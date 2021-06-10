@@ -9,22 +9,29 @@
 <body>
     <h1>Edit Show {{this_show.id}}</h1>
     <a href="/shows">Go Back</a>
+    {%if messages%}
+    <ul>
+        {%for message in messages%}
+            <li>{{message}}</li>
+        {%endfor%}
+    </ul>
+    {%endif%}
     <form action="/shows/{{this_show.id}}/update" method="POST">
         {%csrf_token%}
         <div class="form-row row justify-content-center" >
             <label class="col-2" for="title">Title:</label>
-            <input class="col-3" type="text" name="title" id="title" value="{{this_show.title}}" required>
+            <input class="col-3" type="text" name="title" id="title" value="{{this_show.title}}" >
         <div class="form-row row justify-content-center">
             <label class="col-2" for="network" >Network:</label>
-            <input class="col-3" type="text" name="network" id="network" value="{{this_show.network}}" required>
+            <input class="col-3" type="text" name="network" id="network" value="{{this_show.network}}" >
         </div>
         <div class="form-row row justify-content-center">
             <label class="col-2" for="release_date">Release Date:</label>
-            <input class="col-3" type="date" name="release_date" id="release_date" value="{{this_show.release_date|date:'o-m-d'}}" required> 
+            <input class="col-3" type="date" name="release_date" id="release_date" value="{{this_show.release_date|date:'o-m-d'}}" > 
         </div>
         <div class="form-row row justify-content-center">
             <label class="col-2" for="description">Description:</label>
-            <input class="col-3" type="text" name="description" id="description" value="{{this_show.description}}" required> 
+            <input class="col-3" type="text" name="description" id="description" value="{{this_show.description}}" > 
         </div>
         <div class="form-row row justify-content-center">
             <input class="col-1" type="submit" name="Update">
